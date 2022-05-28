@@ -10,5 +10,6 @@ ___
 ___
 
 ## 📜 Note
-[Python 내장형](https://docs.python.org/ko/3/library/stdtypes.html) 검색 후 문자열 메소드 공부
+- [Python 내장형](https://docs.python.org/ko/3/library/stdtypes.html)
+- [PEP8](https://peps.python.org/pep-0008/)
 ___
