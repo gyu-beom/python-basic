@@ -70,6 +70,79 @@ print(f'{5/3:f}')
 print(f'{5/3:.2f}')
 ```
 
+### 2. 비슷한 형태의 파일 만들기 [기본편 파이썬 - 10-00.py](/%EA%B8%B0%EB%B3%B8%ED%8E%B8/10-%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC/10-00.py)
+
+```python
+file_path = './기본편/10-예외처리/' # 상대경로
+file_list = ['01', '02', '03', '04', '05'] # 파일의 수 만큼 양식 지정
+file_header = ['# 예외처리', '# 에러 발생시키기', '# 사용자 정의 예외처리', '# finally', '# 퀴즈'] # 파일의 상단 문구 지정
+
+for idx in range(len(file_list)):
+    with open(f'{file_path}10-{file_list[idx]}.py', 'w', encoding='utf8') as py_file:
+        py_file.write(f'{file_header[idx]}')
+```
+
+### 3. 에러 발생시키기 [기본편 파이썬 - 10-03.py](/%EA%B8%B0%EB%B3%B8%ED%8E%B8/10-%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC/10-03.py)
+
+- 사용자 정의 에러를 만들기 위해서는 Exception 을 상속받는 클래스를 만들어야 함
+- __init__() 을 통해 상세한 에러 메세지인 msg 멤버변수 정의
+- __str__() 을 통해 msg 멤버변수 출력
+
+```python
+class BigNumberError(Exception): # 사용자 정의 에러
+    def __init__(self, msg):
+        self.msg = msg
+    
+    def __str__(self):
+        return "[에러코드 001]" + self.msg
+
+try:
+    print('한 자리 숫자 나누기 전용 계산기입니다')
+    num1 = int(input('첫 번째 숫자를 입력하세요 : '))
+    num2 = int(input('두 번째 숫자를 입력하세요 : '))
+    if num1 >= 10 or num2 >= 10:
+        # raise ValueError
+        raise BigNumberError(f'입력값 : {num1}, {num2}') # 자세한 에러 메시지
+    print(f'{num1} / {num2} = {int(num1 / num2)}')
+except ValueError:
+    print('잘못된 값을 입력하였습니다 | 한 자리 숫자만 입력하세요')
+except BigNumberError as err: # 사용자 정의 에러
+    print('에러가 발생하였습니다 | 한 자리 숫자만 입력하세요')
+    print(err)
+```
+
+### 4. 예외사항 퀴즈 [기본편 파이썬 - 10-05.py](/%EA%B8%B0%EB%B3%B8%ED%8E%B8/10-%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC/10-05.py)
+
+- 사용자 정의 에러 만들 때 반드시 __init__() 생성자 필요하지 않음
+
+```python
+class SoldOutError(Exception):
+    pass
+
+chicken = 10
+waiting = 1
+
+while(True):
+    try:
+        order = int(input('치킨 몇 마리 주문하시겠습니까? '))
+        if order > chicken:
+            print('재료가 부족합니다')
+        # ValueError
+        elif order <= 0:
+            raise ValueError
+        else:
+            print(f'[대기번호 {waiting}] {order} 마리 주문이 완료되었습니다')
+            waiting += 1
+            chicken -= order
+        # SoldOutError
+        if chicken == 0:
+            raise SoldOutError
+    except ValueError:
+        print('잘못된 값을 입력하였습니다')
+    except SoldOutError:
+        print('재고가 소진되어 더 이상 주문을 받지 않습니다')
+        break
+```
 
 ___
 
