@@ -144,9 +144,19 @@ while(True):
         break
 ```
 
+### 5. pip 명령어 [기본편 파이썬 - 11-06.py](/%EA%B8%B0%EB%B3%B8%ED%8E%B8/11-%EB%AA%A8%EB%93%88%EA%B3%BC%ED%8C%A8%ED%82%A4%EC%A7%80/11-06.py)
+
+|옵션|설명|사용법|
+|:--:|:--:|:--:|
+|install|패키지 설치|pip install [패키지]|
+|install --upgrade|패키지 업그레이드|pip install --upgrade [패키지]|
+|uninstall|패키지 삭제|pip uninstall [패키지]|
+|list|설치 패키지 목록|pip list|
+|show|패키지 상세 정보|pip show [패키지]|
 ___
 
 ## 📜 Note
 - [Python 내장형](https://docs.python.org/ko/3/library/stdtypes.html)
 - [PEP8](https://peps.python.org/pep-0008/)
+- [Python 외장함수](https://docs.python.org/3/py-modindex.html)
 ___
