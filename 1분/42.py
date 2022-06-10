@@ -7,6 +7,8 @@
 
 def 함수명(*전달값):
     수행할 문장
+
+전달값이 많으면 마지막에 한 번만 사용할 수 있음
 '''
 
 def visit(today, *customers):
